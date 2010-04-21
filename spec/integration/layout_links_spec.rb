@@ -21,6 +21,24 @@ describe "LayoutLinks" do
     get '/signup'
     response.should render_template('users/new')
   end
+  it "should have the right links on the layout" do
+    get '/'
+    response.should have_tag 'a', 'Home' do
+      with_tag "a[href=?]", '/'
+    end
+    response.should have_tag 'a', 'About' do
+      with_tag "a[href=?]", '/about'
+    end
+    response.should have_tag 'a', 'Help' do
+      with_tag "a[href=?]", '/help'
+    end
+    response.should have_tag 'a', 'Contact' do
+      with_tag "a[href=?]", '/contact'
+    end
+    response.should have_tag 'a', 'Sign up now!' do
+      with_tag "a[href=?]", '/signup'
+    end
+  end
   
 end
 
